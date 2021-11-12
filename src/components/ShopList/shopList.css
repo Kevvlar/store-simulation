@@ -1,0 +1,19 @@
+.shop-list-holder {
+  width: 75%;
+  border: solid 1px black;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.shop-list {
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  row-gap: 10px;
+  column-gap: 10px;
+  flex-wrap: wrap;
+}

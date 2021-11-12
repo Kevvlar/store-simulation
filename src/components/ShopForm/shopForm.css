@@ -1,0 +1,18 @@
+.shop-form-container {
+  border: 1px solid black;
+  display: flex;
+  row-gap: 10px;
+  column-gap: 10px;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.shop-form-input {
+  width: 100%;
+}
+
+.shop-form-button {
+  width: 50px;
+}

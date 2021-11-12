@@ -1,0 +1,9 @@
+.shelve-item {
+  border: 1px solid greenyellow;
+  width: 20%;
+  padding: 5px;
+}
+
+.shelve-item-title {
+  text-align: left;
+}

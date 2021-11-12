@@ -1,0 +1,8 @@
+.shelves-container {
+  border: 1px solid black;
+  width: 80%;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  column-gap: 20px;
+}
