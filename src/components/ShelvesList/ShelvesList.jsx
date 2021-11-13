@@ -3,34 +3,34 @@ import { connect } from "react-redux";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
 import {
-  updateShelvesOrder,
   updateSelectShelvesOrder,
+  updateShelvesOrderList,
 } from "../../redux/index";
 
 import ShelveItem from "../ShelveItem/ShelveItem";
 
 import "./shelvesList.css";
 
-// const mapOrder = (array, order, key) => {
-//   array.sort(function (a, b) {
-//     var A = a[key],
-//       B = b[key];
+const mapOrder = (array, order, key) => {
+  array.sort(function (a, b) {
+    var A = a[key],
+      B = b[key];
 
-//     if (order.indexOf(A) > order.indexOf(B)) {
-//       return 1;
-//     } else {
-//       return -1;
-//     }
-//   });
+    if (order.indexOf(A) > order.indexOf(B)) {
+      return 1;
+    } else {
+      return -1;
+    }
+  });
 
-//   return array;
-// };
+  return array;
+};
 
 const ShelvesList = ({
   shelves,
   shelvesOrder,
-  updateOrderSelectShelve,
-  updateOrderShelves,
+  updateSelectOrder,
+  updateOrderList,
 }) => {
   const onDragEnd = (result) => {
     const { destination, source, type } = result;
@@ -46,10 +46,8 @@ const ShelvesList = ({
       newColumnOrder.splice(destination.index, 0, reOrderedItem);
 
       // send this to column orderState
-      // console.log("Old: ", shelvesOrder);
-      // console.log("New: ", newColumnOrder);
-      updateOrderSelectShelve(newColumnOrder);
-      updateOrderShelves();
+      updateSelectOrder(newColumnOrder);
+      updateOrderList();
     }
   };
 
@@ -62,8 +60,8 @@ const ShelvesList = ({
             {...provided.droppableProps}
             ref={provided.innerRef}
           >
-            {shelves.map((shelve, index) => (
-              <ShelveItem shelveItem={shelve} key={index} index={index} />
+            {mapOrder(shelves, shelvesOrder, "id").map((shelve, index) => (
+              <ShelveItem shelveItem={shelve} key={shelve.id} index={index} />
             ))}
             {provided.placeholder}
           </div>
@@ -82,14 +80,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateOrderSelectShelve: (order) =>
-      dispatch(updateSelectShelvesOrder(order)),
-    updateOrderShelves: () => dispatch(updateShelvesOrder()),
+    updateSelectOrder: (order) => dispatch(updateSelectShelvesOrder(order)),
+    updateOrderList: () => dispatch(updateShelvesOrderList()),
   };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShelvesList);
-
-// {mapOrder(shelves, shelvesOrder, "id").map((shelve, index) => (
-//   <ShelveItem shelveItem={shelve} key={index} index={index} />
-// ))}

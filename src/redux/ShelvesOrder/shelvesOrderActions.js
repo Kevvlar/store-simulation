@@ -2,8 +2,8 @@ import {
   CREATE_SHELVES_ORDER,
   SELECT_SHELVES_ORDER,
   ADD_SHELVE_TO_ORDER,
-  UPDATE_SHELVES_ORDER,
   UPDATE_SELECT_SHELVES_ORDER,
+  UPDATE_SHELVES_ORDER_LIST,
 } from "./shelvesOrderTypes";
 
 export const createShelvesOrder = (shopId) => {
@@ -27,9 +27,9 @@ export const addShelveToOrder = (shelveId) => {
   };
 };
 
-export const updateShelvesOrder = () => {
+export const updateShelvesOrderList = () => {
   return {
-    type: UPDATE_SHELVES_ORDER,
+    type: UPDATE_SHELVES_ORDER_LIST,
   };
 };
 

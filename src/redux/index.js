@@ -8,8 +8,8 @@ export {
   createShelvesOrder,
   selectShelvesOrder,
   addShelveToOrder,
-  updateShelvesOrder,
   updateSelectShelvesOrder,
+  updateShelvesOrderList,
 } from "./ShelvesOrder/shelvesOrderActions";
 
 export { createShelveItem, getSelectShelves } from "./Shelves/shelvesActions";

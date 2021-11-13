@@ -2,8 +2,8 @@ import {
   CREATE_SHELVES_ORDER,
   SELECT_SHELVES_ORDER,
   ADD_SHELVE_TO_ORDER,
-  UPDATE_SHELVES_ORDER,
   UPDATE_SELECT_SHELVES_ORDER,
+  UPDATE_SHELVES_ORDER_LIST,
 } from "./shelvesOrderTypes";
 
 const initialState = {
@@ -51,7 +51,7 @@ const shelvesOrderReducer = (state = initialState, action) => {
         },
       };
 
-    case UPDATE_SHELVES_ORDER:
+    case UPDATE_SHELVES_ORDER_LIST:
       return {
         ...state,
         shelveOrders: state.shelveOrders.map((shelve) => {

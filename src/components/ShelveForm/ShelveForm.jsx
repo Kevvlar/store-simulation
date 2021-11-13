@@ -6,7 +6,7 @@ import {
   createShelveItem,
   getSelectShelves,
   addShelveToOrder,
-  updateShelvesOrder,
+  updateShelvesOrderList,
 } from "../../redux/index";
 
 import "./shelveForm.css";
@@ -16,7 +16,7 @@ const ShelveForm = ({
   selectShopId,
   getShelves,
   addShelveOrder,
-  updateOrders,
+  updateOrderList,
 }) => {
   const [shelveName, setShelveName] = useState("");
 
@@ -31,7 +31,7 @@ const ShelveForm = ({
           title: shelveName,
         });
         addShelveOrder(shelveId);
-        updateOrders();
+        updateOrderList();
         getShelves(selectShopId);
         setShelveName("");
       }}
@@ -61,7 +61,7 @@ const mapDispatchToProps = (dispatch) => {
     addShelve: (shelveItem) => dispatch(createShelveItem(shelveItem)),
     getShelves: (shopId) => dispatch(getSelectShelves(shopId)),
     addShelveOrder: (shelveId) => dispatch(addShelveToOrder(shelveId)),
-    updateOrders: () => dispatch(updateShelvesOrder()),
+    updateOrderList: () => dispatch(updateShelvesOrderList()),
   };
 };
 
