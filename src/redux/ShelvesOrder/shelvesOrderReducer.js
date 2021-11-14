@@ -4,6 +4,7 @@ import {
   ADD_SHELVE_TO_ORDER,
   UPDATE_SELECT_SHELVES_ORDER,
   UPDATE_SHELVES_ORDER_LIST,
+  DELETE_SHELVE_ORDER_GLOBAL,
 } from "./shelvesOrderTypes";
 
 const initialState = {
@@ -61,6 +62,15 @@ const shelvesOrderReducer = (state = initialState, action) => {
 
           return shelve;
         }),
+      };
+
+    case DELETE_SHELVE_ORDER_GLOBAL:
+      return {
+        ...state,
+        selectShelveOrder: {},
+        shelveOrders: state.shelveOrders.filter(
+          (item) => item.shopId !== action.payLoad
+        ),
       };
 
     default:

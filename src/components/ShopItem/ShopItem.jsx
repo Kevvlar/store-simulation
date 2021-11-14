@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 
 import {
   selectShopItem,
-  deleteShopItem,
+  deleteEntireShop,
   getSelectShelves,
   selectShelvesOrder,
 } from "../../redux/index";
@@ -46,7 +46,7 @@ const ShopItem = ({
 const mapDispatchToProps = (dispatch) => {
   return {
     selectItem: (shopItem) => dispatch(selectShopItem(shopItem)),
-    removeItem: (shopItemId) => dispatch(deleteShopItem(shopItemId)),
+    removeItem: (shopItemId) => dispatch(deleteEntireShop(shopItemId)),
     getShelves: (shopId) => dispatch(getSelectShelves(shopId)),
     getShelveOrder: (shopId) => dispatch(selectShelvesOrder(shopId)),
   };

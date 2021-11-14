@@ -4,6 +4,7 @@ import {
   ADD_SHELVE_TO_ORDER,
   UPDATE_SELECT_SHELVES_ORDER,
   UPDATE_SHELVES_ORDER_LIST,
+  DELETE_SHELVE_ORDER_GLOBAL,
 } from "./shelvesOrderTypes";
 
 export const createShelvesOrder = (shopId) => {
@@ -37,5 +38,12 @@ export const updateSelectShelvesOrder = (order) => {
   return {
     type: UPDATE_SELECT_SHELVES_ORDER,
     payLoad: order,
+  };
+};
+
+export const deleteShelveOrderGlobal = (shopId) => {
+  return {
+    type: DELETE_SHELVE_ORDER_GLOBAL,
+    payLoad: shopId,
   };
 };

@@ -1,7 +1,7 @@
 export {
   selectShopItem,
   addShopItem,
-  deleteShopItem,
+  deleteEntireShop,
 } from "./Shop/shopActions";
 
 export {
@@ -10,6 +10,16 @@ export {
   addShelveToOrder,
   updateSelectShelvesOrder,
   updateShelvesOrderList,
+  deleteShelveOrderGlobal,
 } from "./ShelvesOrder/shelvesOrderActions";
 
-export { createShelveItem, getSelectShelves } from "./Shelves/shelvesActions";
+export {
+  createShelveItem,
+  getSelectShelves,
+  deleteShelvesGlobal,
+  addCardToSelectShelve,
+  updateSelectShelveCardOrder,
+  getFocusShelveItem,
+} from "./Shelves/shelvesActions";
+
+export { createCard } from "./card/cardActions";

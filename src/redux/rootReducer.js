@@ -5,6 +5,7 @@ import storage from "redux-persist/lib/storage";
 import shopReducer from "./Shop/shopReducer";
 import shelvesReducer from "./Shelves/shelveReducer";
 import shelvesOrdersReucer from "./ShelvesOrder/shelvesOrderReducer";
+import cardReducer from "./card/cardReducer";
 
 const persistConfig = {
   key: "root",
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   shop: shopReducer,
   shelve: shelvesReducer,
   shelveOrder: shelvesOrdersReucer,
+  card: cardReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -7,3 +7,8 @@
 .shelve-item-title {
   text-align: left;
 }
+
+.card-list-container {
+  display: flex;
+  flex-direction: column;
+}
