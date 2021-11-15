@@ -2,16 +2,11 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 
-import { createCard, addCardToSelectShelve } from "../../redux/index";
+import { addCard } from "../../redux/index";
 
 import "./cardForm.css";
 
-const CardForm = ({
-  shelveId,
-  selectShopId,
-  addCard,
-  pushCardToSelectShelve,
-}) => {
+const CardForm = ({ shelveId, createCard }) => {
   const [cardName, setCardName] = useState("");
 
   return (
@@ -20,13 +15,11 @@ const CardForm = ({
         e.preventDefault();
         const cardId = uuidv4();
         const cardObj = {
-          shopId: selectShopId,
           shelveId: shelveId,
           id: cardId,
           title: cardName,
         };
-        addCard(cardObj);
-        pushCardToSelectShelve(cardObj);
+        createCard(cardObj);
         setCardName("");
       }}
       className="card-form-container"
@@ -52,9 +45,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addCard: (cardObj) => dispatch(createCard(cardObj)),
-    pushCardToSelectShelve: (cardObj) =>
-      dispatch(addCardToSelectShelve(cardObj)),
+    createCard: (cardObj) => dispatch(addCard(cardObj)),
   };
 };
 

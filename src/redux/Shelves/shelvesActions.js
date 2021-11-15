@@ -2,9 +2,13 @@ import {
   CREATE_SHELVE_ITEM,
   GET_SELECT_SHELVES,
   DELETE_SHELVES_GLOBAL,
-  ADD_CARD_TO_SELECT_SHELVE,
-  UPDATE_SELECT_SHELVE_CARD_ORDER,
   GET_FOCUS_SHELVE_ITEM,
+  ADD_CARD,
+  UPDATE_CARD_ORDER,
+  GET_CARD_DATA,
+  REMOVE_CARD_FROM_SHELVE,
+  CHANGE_CARD_SHELVE,
+  CHANGE_CARD_SHELVE_ID,
 } from "./shelvesTypes";
 
 export const createShelveItem = (shelveItem) => {
@@ -28,23 +32,50 @@ export const deleteShelvesGlobal = (shopId) => {
   };
 };
 
-export const addCardToSelectShelve = (cardObj) => {
-  return {
-    type: ADD_CARD_TO_SELECT_SHELVE,
-    payLoad: cardObj,
-  };
-};
-
-export const updateSelectShelveCardOrder = (cardOrderObj) => {
-  return {
-    type: UPDATE_SELECT_SHELVE_CARD_ORDER,
-    payLoad: cardOrderObj,
-  };
-};
-
 export const getFocusShelveItem = (shelveInfo) => {
   return {
     type: GET_FOCUS_SHELVE_ITEM,
     payLoad: shelveInfo,
+  };
+};
+
+export const addCard = (cardObj) => {
+  return {
+    type: ADD_CARD,
+    payLoad: cardObj,
+  };
+};
+
+export const changeCardOrder = (orderObj) => {
+  return {
+    type: UPDATE_CARD_ORDER,
+    payLoad: orderObj,
+  };
+};
+
+export const removeCard = () => {
+  return {
+    type: REMOVE_CARD_FROM_SHELVE,
+  };
+};
+
+export const changeCardShelve = (changeInfo) => {
+  return {
+    type: CHANGE_CARD_SHELVE,
+    payLoad: changeInfo,
+  };
+};
+
+export const changeCardShelveId = (newShelveId) => {
+  return {
+    type: CHANGE_CARD_SHELVE_ID,
+    payLoad: newShelveId,
+  };
+};
+
+export const getCardData = (card) => {
+  return {
+    type: GET_CARD_DATA,
+    payLoad: card,
   };
 };

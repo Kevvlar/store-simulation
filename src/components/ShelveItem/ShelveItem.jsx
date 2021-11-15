@@ -35,6 +35,7 @@ const ShelveItem = ({ shelveItem, index, getFocusShelve }) => {
         >
           <div className="shelve-title-container" {...provided.dragHandleProps}>
             <h2 className="shelve-item-title">{shelveItem.title}</h2>
+            <p>{shelveItem.id}</p>
           </div>
           <div>
             <CardForm shelveId={shelveItem.id} />
@@ -44,12 +45,12 @@ const ShelveItem = ({ shelveItem, index, getFocusShelve }) => {
                   className="card-list-container"
                   ref={provided.innerRef}
                   {...provided.droppableProps}
-                  onClick={() =>
+                  onClick={() => {
                     getFocusShelve({
                       id: shelveItem.id,
                       title: shelveItem.title,
-                    })
-                  }
+                    });
+                  }}
                 >
                   {mapOrder(shelveItem.cards, shelveItem.cardOrder, "id").map(
                     (card, index) => (

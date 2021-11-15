@@ -5,7 +5,10 @@ import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import {
   updateSelectShelvesOrder,
   updateShelvesOrderList,
-  updateSelectShelveCardOrder,
+  changeCardOrder,
+  removeCard,
+  changeCardShelve,
+  changeCardShelveId,
 } from "../../redux/index";
 
 import ShelveItem from "../ShelveItem/ShelveItem";
@@ -32,11 +35,14 @@ const ShelvesList = ({
   shelvesOrder,
   updateSelectOrder,
   updateOrderList,
+  updateCardOrder,
   currentShelveId,
-  updateFocusCardOrder,
+  reomveCardData,
+  changeCardShelve,
+  changeSelectCardId,
 }) => {
   const onDragEnd = (result) => {
-    const { destination, source, type } = result;
+    const { destination, source, draggableId, type } = result;
 
     if (!destination) {
       return;
@@ -66,22 +72,30 @@ const ShelvesList = ({
       const [reOrderedCards] = newCardOrder.splice(source.index, 1);
       newCardOrder.splice(destination.index, 0, reOrderedCards);
       // console.log(newCardOrder);
-      updateFocusCardOrder({
+
+      updateCardOrder({
         shelveId: currentShelveId,
-        cardOrder: newCardOrder,
+        order: newCardOrder,
       });
     }
 
     // move card into another column
-    // if (source.droppableId !== destination.droppableId && type === "card") {
-    //   const targetColumn = columns.find((column) =>
-    //     column.id === destination.droppableId ? column : null
-    //   );
+    if (source.droppableId !== destination.droppableId && type === "card") {
+      const targetColumn = shelves.find((column) =>
+        column.id === destination.droppableId ? column : null
+      );
 
-    //   const targetColumnCardOrder = targetColumn.cardOrder;
-    //   const newTargetColumnCardOrder = [...targetColumnCardOrder];
-    //   newTargetColumnCardOrder.splice(destination.index, 0, draggableId);
-    // }
+      const targetColumnCardOrder = targetColumn.cardOrder;
+      const newTargetColumnCardOrder = [...targetColumnCardOrder];
+      newTargetColumnCardOrder.splice(destination.index, 0, draggableId);
+
+      reomveCardData();
+      changeSelectCardId(destination.droppableId);
+      changeCardShelve({
+        targetShelve: destination.droppableId,
+        order: newTargetColumnCardOrder,
+      });
+    }
   };
 
   return (
@@ -116,8 +130,10 @@ const mapDispatchToProps = (dispatch) => {
   return {
     updateSelectOrder: (order) => dispatch(updateSelectShelvesOrder(order)),
     updateOrderList: () => dispatch(updateShelvesOrderList()),
-    updateFocusCardOrder: (cardOrderObj) =>
-      dispatch(updateSelectShelveCardOrder(cardOrderObj)),
+    updateCardOrder: (orderObj) => dispatch(changeCardOrder(orderObj)),
+    reomveCardData: () => dispatch(removeCard()),
+    changeCardShelve: (changeInfo) => dispatch(changeCardShelve(changeInfo)),
+    changeSelectCardId: (newId) => dispatch(changeCardShelveId(newId)),
   };
 };
 
